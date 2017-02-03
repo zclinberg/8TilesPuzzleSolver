@@ -106,14 +106,6 @@ class PuzzleBoard(object):
                 validMoves.append("right")
             return validMoves
 
-        def isPuzzleSolved(self):
-            k = 0
-            for a in self.board:
-                for b in a:
-                    if b != k:
-                        return False
-                    k += 1
-            return True
 
         def getGoalCell(self,x):
             i = j = 0
@@ -128,7 +120,7 @@ class PuzzleBoard(object):
                 j = 0
             elif x == 1 or x == 4 or x == 7:
                 j = 1
-            if x == 2 or x == 5 or x == 8:
+            elif x == 2 or x == 5 or x == 8:
                 j = 2
             return [i,j]
 
@@ -151,15 +143,6 @@ class PuzzleBoard(object):
                 i += 1
             return h
 
-        def findBestMove(self):
-            bestImprovement = float("inf")
-            possibleMoves = self.getValidMoves()
-            for m in possibleMoves:
-                improvement = self.getMoveChangeInH(m)
-                if improvement < bestImprovement:
-                    bestImprovement = improvement
-                    bestMove = m
-            return bestMove
 
         def getMoveChangeInH(self,direction):
             cellToSwap = self.getCellToSwap(direction)

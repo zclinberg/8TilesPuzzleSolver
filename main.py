@@ -9,9 +9,13 @@ for line in fileinput.input():
 
 pb = PuzzleBoard(s)
 
-solver = PuzzleSolver(pb.copy())
+solver = PuzzleSolver(pb)
 solution = solver.solve()
 print("--- %s seconds ---" % (time.time() - starttime))
 print(solution,len(solution)," moves")
-
+print(solver.recursions)
+pb.printBoard()
+for m in solution:
+    pb.moveBlankCell(m)
+    pb.printBoard()
 
