@@ -4,7 +4,7 @@ from random import randint
 
 class PuzzleBoard(object):
     def __init__(self):
-        self.board =  self.generateRandomState()
+        self.board =   self.board = self.generateRandomState()
         self.blankCell = self.getBlankCell()
         self.h = self.manhattanHeuristic() + 2 * self.getLinearConflict()
 

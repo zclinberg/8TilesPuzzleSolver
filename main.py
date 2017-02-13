@@ -1,20 +1,32 @@
 from puzzle_board import PuzzleBoard
 from puzzle_solver import PuzzleSolver
-import fileinput
+import sys
 import time
 
 starttime =time.time()
 
 pb = PuzzleBoard()
-pb.printBoard()
-
 
 solver = PuzzleSolver(pb)
-solution = solver.solve()
-print("--- %s seconds ---" % (time.time() - starttime))
-print(solution,len(solution)," moves")
-print(solver.expansions)
+solution = solver.aStarSolve()
+
 pb.printBoard()
-for m in solution:
-    pb.moveBlankCell(m)
-    pb.printBoard()
+print("A* solution")
+print("--- %s seconds ---" % (time.time() - starttime))
+print(solution)
+print(len(solution)," moves")
+print(solver.expansions, " expansions")
+if "bfs" in sys.argv:
+    starttime = time.time()
+    solver.clearSolver()
+    bfsSolution = solver.bfs_search()
+    print("BFS solution")
+    print("--- %s seconds ---" % (time.time() - starttime))
+    print(solution)
+    print(len(solution)," moves")
+    print(solver.expansions, " expansions")
+
+if "p" in sys.argv:
+    for m in solution:
+        pb.moveBlankCell(m)
+        pb.printBoard()

@@ -1,6 +1,6 @@
 
 class PuzzleNode(object):
-    def __init__(self, data = None, moves = [], left = None,right =None, up = None, down = None):
+    def __init__(self, data = None, moves = []):
         self.data = data
         self.moves = moves
         self.f = data.h + len(moves)
@@ -10,12 +10,12 @@ class PuzzleNode(object):
         return str(self.data)
 
     def __eq__(self, other):
-        if self.data == other.data:
+        if self.f == other.f:
             return True
         else: return False
 
     def __lt__(self,other):
-        if self.data < other.data:
+        if self.f < other.f:
             return True
         else: return False
     def toString(self):
