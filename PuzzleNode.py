@@ -1,4 +1,4 @@
-from puzzle_board import PuzzleBoard
+
 class PuzzleNode(object):
     def __init__(self, data = None, moves = [], left = None,right =None, up = None, down = None):
         self.data = data
@@ -18,5 +18,10 @@ class PuzzleNode(object):
         if self.data < other.data:
             return True
         else: return False
+    def toString(self):
+        s = ""
+        for x in range(3):
+            for y in range(3):
+                s += str(self.data.getCell(x,y))
 
-
+        return s
